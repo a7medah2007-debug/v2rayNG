@@ -65,47 +65,50 @@ private val LightColor = lightColorScheme(
 )
 
 private val DarkColor = darkColorScheme(
-    primary = Color(0xFFC0C0C0), // Silver Gray
-    onPrimary = Color(0xFF303030), // Dark Gray
-    primaryContainer = Color(0xFF474747), // Gray
-    onPrimaryContainer = Color(0xFFE0E0E0), // Light Gray
-    secondary = Color(0xFFf97910), // Orange
-    onSecondary = Color(0xFF4E2600), // Dark Brown
-    secondaryContainer = Color(0xFF6F3800), // Brown
-    onSecondaryContainer = Color(0xFFFFE8D6), // Pale Orange
-    tertiary = Color(0xFF83D6B5), // Mint Green
-    onTertiary = Color(0xFF00382E), // Dark Teal
-    tertiaryContainer = Color(0xFF005143), // Teal
-    onTertiaryContainer = Color(0xFFA0F2D0), // Light Green
-    error = Color(0xFFFFB4AB), // Light Red
-    errorContainer = Color(0xFF93000A), // Dark Red
-    onError = Color(0xFF690005), // Deep Red
-    onErrorContainer = Color(0xFFFFDAD6), // Light Red
-    background = Color(0xFF1C1B1F), // Near Black
-    onBackground = Color(0xFFE6E1E5), // Light Gray
-    surface = Color(0xFF1C1B1F), // Near Black
-    onSurface = Color(0xFFE6E1E5), // Light Gray
-    surfaceVariant = Color(0xFF49454F), // Dark Gray
-    onSurfaceVariant = Color(0xFFCAC4D0), // Light Gray
-    outline = Color(0xFF938F99), // Grayish Purple
-    outlineVariant = Color(0xFF49454F), // Dark Gray
-    inverseSurface = Color(0xFFE6E1E5), // Light Gray
-    inverseOnSurface = Color(0xFF1C1B1F), // Near Black
-    inversePrimary = Color(0xFF000000), // Black
-    scrim = Color(0xFF000000), // Black
-    surfaceTint = Color(0xFFC0C0C0), // Silver Gray
-    surfaceContainerLowest = Color(0xFF0F0F12), // Near Black
-    surfaceContainerLow = Color(0xFF1A191D), // Dark Gray
-    surfaceContainer = Color(0xFF1E1D21), // Dark Gray
-    surfaceContainerHigh = Color(0xFF282729), // Dark Gray
-    surfaceContainerHighest = Color(0xFF333234), // Dark Gray
+    // 10% Accent: Electric Cyan (High-Tech, Speed, Energy & Active States)
+    primary = Color(0xFF00E5FF),
+    onPrimary = Color(0xFF00222B),
+    // 30% Secondary: Slate Blue Containers & Card Elevations (Structure & Depth)
+    primaryContainer = Color(0xFF1E293B),
+    onPrimaryContainer = Color(0xFFE2E8F0),
+    secondary = Color(0xFF38BDF8),
+    onSecondary = Color(0xFF002B47),
+    secondaryContainer = Color(0xFF0F2B48),
+    onSecondaryContainer = Color(0xFFBAE6FD),
+    tertiary = Color(0xFF10B981),
+    onTertiary = Color(0xFF003820),
+    tertiaryContainer = Color(0xFF004D2D),
+    onTertiaryContainer = Color(0xFFA7F3D0),
+    error = Color(0xFFFF5252),
+    errorContainer = Color(0xFF5A0009),
+    onError = Color(0xFFFFFFFF),
+    onErrorContainer = Color(0xFFFFDAD6),
+    // 60% Dominant: Deep Cyber Midnight Navy (Security, Calm, Battery Life & Privacy)
+    background = Color(0xFF090D16),
+    onBackground = Color(0xFFF1F5F9),
+    surface = Color(0xFF0D1322),
+    onSurface = Color(0xFFF1F5F9),
+    surfaceVariant = Color(0xFF162035),
+    onSurfaceVariant = Color(0xFF94A3B8),
+    outline = Color(0xFF334155),
+    outlineVariant = Color(0xFF1E293B),
+    inverseSurface = Color(0xFFF1F5F9),
+    inverseOnSurface = Color(0xFF090D16),
+    inversePrimary = Color(0xFF007A8A),
+    scrim = Color(0xFF000000),
+    surfaceTint = Color(0xFF00E5FF),
+    surfaceContainerLowest = Color(0xFF06090F),
+    surfaceContainerLow = Color(0xFF0A0F1A),
+    surfaceContainer = Color(0xFF0E1626),
+    surfaceContainerHigh = Color(0xFF141F33),
+    surfaceContainerHighest = Color(0xFF1A2842),
 )
 
-// Semantic Colors
-val colorPing = Color(0xFF009966) // Green
-val colorPingRed = Color(0xFFFF0099) // Pink Red
-val colorConfigType = Color(0xFFf97910) // Orange
-val colorFabActive = Color(0xFFf97910) // Orange
+// Semantic Colors (60-30-10 Harmonized)
+val colorPing = Color(0xFF10B981) // Emerald Green (Optimal Ping)
+val colorPingRed = Color(0xFFFF5252) // Neon Red (High Ping / Error)
+val colorConfigType = Color(0xFF00E5FF) // Electric Cyan (Config Type Badge)
+val colorFabActive = Color(0xFF00E5FF) // Electric Cyan Glow (Active Tunnel FAB)
 val colorFabInactiveLight = Color(0xFF9C9C9C) // Gray
 val colorFabInactiveDark = Color(0xFF646464) // Dark Gray
 val dividerColorLight = Color(0xFFE0E0E0) // Light Gray
