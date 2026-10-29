@@ -86,20 +86,33 @@ jobs:
         distribution: 'temurin'
         java-version: '21'
 
-    - name: Decode Keystore
-      uses: timheuer/base64-to-file@v2.0.0
-      id: android_keystore
-      with:
-        fileName: "android_keystore.jks"
-        encodedString: ${{ secrets.APP_KEYSTORE_BASE64 }}
+    - name: Setup Keystore (Auto-sign for Blix)
+      run: |
+        if [ -n "${{ secrets.APP_KEYSTORE_BASE64 }}" ]; then
+          echo "${{ secrets.APP_KEYSTORE_BASE64 }}" | base64 -d > ${{ github.workspace }}/android_keystore.jks
+          echo "KEYSTORE_PATH=${{ github.workspace }}/android_keystore.jks" >> $GITHUB_ENV
+          echo "KEYSTORE_PASS=${{ secrets.APP_KEYSTORE_PASSWORD }}" >> $GITHUB_ENV
+          echo "KEY_ALIAS=${{ secrets.APP_KEYSTORE_ALIAS }}" >> $GITHUB_ENV
+          echo "KEY_PASS=${{ secrets.APP_KEY_PASSWORD }}" >> $GITHUB_ENV
+        else
+          keytool -genkey -v -keystore ${{ github.workspace }}/android_keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias blix -storepass blix1234 -keypass blix1234 -dname "CN=Blix, OU=abohalka, O=BlixTunnel, L=Cairo, C=EG"
+          echo "KEYSTORE_PATH=${{ github.workspace }}/android_keystore.jks" >> $GITHUB_ENV
+          echo "KEYSTORE_PASS=blix1234" >> $GITHUB_ENV
+          echo "KEY_ALIAS=blix" >> $GITHUB_ENV
+          echo "KEY_PASS=blix1234" >> $GITHUB_ENV
+        fi
 
-    - name: Build APK
+    - name: Build Blix APK
       run: |
         cd ${{ github.workspace }}/V2rayNG
         echo "sdk.dir=${ANDROID_HOME}" > local.properties
         chmod 755 gradlew
         ./gradlew licenseFdroidReleaseReport
-        ./gradlew assembleRelease -Pandroid.injected.signing.store.file=${{ steps.android_keystore.outputs.filePath }} -Pandroid.injected.signing.store.password=${{ secrets.APP_KEYSTORE_PASSWORD }} -Pandroid.injected.signing.key.alias=${{ secrets.APP_KEYSTORE_ALIAS }} -Pandroid.injected.signing.key.password=${{ secrets.APP_KEY_PASSWORD }}
+        ./gradlew assembleRelease \
+          -Pandroid.injected.signing.store.file=${KEYSTORE_PATH} \
+          -Pandroid.injected.signing.store.password=${KEYSTORE_PASS} \
+          -Pandroid.injected.signing.key.alias=${KEY_ALIAS} \
+          -Pandroid.injected.signing.key.password=${KEY_PASS}
     
     - name: Upload arm64-v8a APK
       uses: actions/upload-artifact@v7
